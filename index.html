@@ -1,0 +1,149 @@
+<!-- PWA & iOS Mobile Web App Meta Tags -->
+<title>Personal Color & Beauty Ecosystem</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Color Ecosystem">
+<meta name="theme-color" content="#F9F8F6">
+<meta name="description" content="ระบบนิเวศวิเคราะห์ Personal Color, ลองลิปสติก AR และจับคู่สีเสื้อผ้าสำหรับ iPhone">
+
+<!-- Fonts: Kanit (Thai) & Inter (English) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    cream: '#F9F8F6',
+                    charcoal: '#1A1A1A',
+                    textMuted: '#6E6E73',
+                    pastelRose: '#E8C5C8',
+                    softBlue: '#B4C6E7',
+                    mutedSage: '#C2D8C8',
+                    warmGold: '#D4AF37',
+                    goldHover: '#B89528',
+                    softGray: '#F2F0EC'
+                },
+                fontFamily: {
+                    thai: ['Kanit', 'sans-serif'],
+                    sans: ['Inter', 'Kanit', 'sans-serif']
+                },
+                boxShadow: {
+                    glass: '0 8px 32px 0 rgba(0, 0, 0, 0.06)',
+                    glassHover: '0 12px 40px 0 rgba(0, 0, 0, 0.1)',
+                    card: '0 4px 20px -2px rgba(26, 26, 26, 0.05)',
+                    nav: '0 -4px 20px rgba(0, 0, 0, 0.04)'
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    :root {
+        --sat: env(safe-area-inset-top);
+        --sab: env(safe-area-inset-bottom);
+    }
+
+    body {
+        background-color: #F9F8F6;
+        font-family: 'Kanit', 'Inter', sans-serif;
+        color: #1A1A1A;
+        -webkit-tap-highlight-color: transparent;
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-bottom: max(76px, calc(64px + env(safe-area-inset-bottom)));
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .glass-pill {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 1);
+    }
+
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* Scanning Laser Keyframe Animation */
+    @keyframes scanMove {
+        0% { top: 0%; opacity: 0.8; }
+        50% { top: 92%; opacity: 1; }
+        100% { top: 0%; opacity: 0.8; }
+    }
+
+    .scan-line {
+        animation: scanMove 2.2s ease-in-out infinite;
+    }
+
+    /* Fade and Scale Screen Transitions */
+    .fade-in {
+        animation: fadeIn 0.35s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Shimmer Effect for Primary CTA */
+    @keyframes shimmer {
+        100% { transform: translateX(100%); }
+    }
+    
+    .shimmer-btn {
+        position: relative;
+        overflow: hidden;
+    }
+    .shimmer-btn::after {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.25) 20%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0)
+        );
+        animation: shimmer 2.5s infinite;
+        content: '';
+    }
+
+    /* Smooth Accordion Height Expansion */
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion-content.open {
+        max-height: 800px;
+    }
+
+    /* Hide scrollbars for smooth swiping */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
